@@ -135,14 +135,16 @@ namespace TinyScanner {
 
                 case INNUM:
                     if (!Char::IsDigit(c)) {
-                        Retreat(); save = false; state = DONE;
+                        if (c != L'\0') Retreat();
+                        save = false; state = DONE;
                         return gcnew Token(lexeme, TokenType::Number);
                     }
                     break;
 
                 case INID:
                     if (!Char::IsLetterOrDigit(c)) {
-                        Retreat(); save = false; state = DONE;
+                        if (c != L'\0') Retreat();
+                        save = false; state = DONE;
                         TokenType t;
                         if (keywords->TryGetValue(lexeme->ToLower(), t))
                             return gcnew Token(lexeme, t);
