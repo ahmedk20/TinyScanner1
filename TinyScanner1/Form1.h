@@ -31,7 +31,7 @@ namespace TinyScanner {
     // Returns a list of {lexeme, token} pairs instead of printing
     std::vector<std::pair<std::string, std::string>> scanner(std::string input) {
         std::vector<std::pair<std::string, std::string>> tokens;
-        int i = 0;
+        int i = 0;  
 
         while (i < (int)input.length()) {
             char c = input[i];
@@ -90,8 +90,19 @@ namespace TinyScanner {
             else if (c == '/') { tokens.push_back({ "/", "DIVOP"  }); i++; }
 
             // Comparison Operators
-            else if (c == '=' || c == '<') {
-                tokens.push_back({ std::string(1, c), "COMPARISONOP" });
+            else if (c == '<') {
+
+                        tokens.push_back({ "<", "COMPARISONOP" });
+                        i++;
+            }
+            else if (c == '>') {
+
+                    tokens.push_back({ ">", "COMPARISONOP" });
+                    i++;
+                
+            }
+            else if (c == '=') {
+                tokens.push_back({ "=", "COMPARISONOP" });
                 i++;
             }
 
